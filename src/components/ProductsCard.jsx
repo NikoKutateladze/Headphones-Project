@@ -1,4 +1,4 @@
-export default function ProductCard({ name }) {
+export default function ProductCard({ name, content }) {
     const Class = `img-product ${name}`;
     return (
         <>
@@ -6,7 +6,7 @@ export default function ProductCard({ name }) {
               <div className="background"></div>
               <div className={Class} ></div>
               <div className="shadow"></div>
-              <p className='wrapper-tt'>HEADPHONES</p>
+              <p className='wrapper-tt'>{content}</p>
               <p className='shop'>SHOP <span className='arrow-right'>›</span></p>
             </div>
         </>
