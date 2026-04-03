@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function HeaderNav({ navContent }) {
-    let contentTrack;
-    const contentCheck = navContent.toLowerCase() === 'home' ? contentTrack = '/' : contentTrack = navContent.toLowerCase(); 
+    let contentTrack = `/${navContent.toLowerCase()}`;
+    const contentCheck = navContent.toLowerCase() === 'home' 
+    ? "/"
+    : `/${navContent.toLowerCase()}`; 
     return (
         <>
-            <a href={contentTrack} className="section">{navContent}</a>
+            <Link to={contentCheck} className="section">{navContent}</Link>
         </>
     )
 }

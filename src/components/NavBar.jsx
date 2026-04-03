@@ -2,7 +2,7 @@ import HeaderNav from "./HeaderNav"
 
 export default function NavBar() {
     return (
-        <>
+        <>  
             <div className="nav">
                 <div className="nav-title">audiophile</div>
                 <div className="nav-section">

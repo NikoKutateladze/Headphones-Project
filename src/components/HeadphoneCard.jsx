@@ -1,8 +1,14 @@
-export default function HeadphoneCard({ title, description, img }) {
+import { useState } from "react";
+import Counter from "./Counter";
+import ParagraphS from "./ParagraphS"
+import HeaderL from "./HeaderL";
 
+export default function HeadphoneCard({ title, description, img, linkSrc, linkId }) {
     const imgStyle = {
         backgroundImage: `url(${img})`,
     }
+
+    const link = `/${linkSrc}/${linkId}`;
 
     return (
         <>
@@ -11,9 +17,12 @@ export default function HeadphoneCard({ title, description, img }) {
                 <div className="headphone-shadow"></div>
             </div>
             <div className="headphone-text">
-                <h1 className="heaphone-title">{title}</h1>
-                <p className="headphone-description">{description}</p>
-                <div className="button">SEE PRODUCT</div>
+                <HeaderL content={title}/>
+                <ParagraphS content={description} classContent={"dark-gray"}/>
+                <div className="product-interaction">
+                    <a href={link} className="button responsiveXS">SEE PRODUCT</a>
+                </div>
+                
             </div>
         </>
     )
