@@ -26,7 +26,10 @@ export const products = [
 
 
 function App() {
-  const [ cart, setCart ] = useState([]);
+
+
+  const [cart, setCart] = useState([{ id: 0, title: "sample", description: "sample", img: "sample", quantity: 0 }]);
+  const [toggle, setToggle] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -37,85 +40,87 @@ function App() {
   const [icon2Hover, setIcon2Hover] = useState(false)
   const [icon3Hover, setIcon3Hover] = useState(false)
 
-  const iconBaseColor = "#fff"
-  const iconHoverColor = "#D87D4A"
+  const iconBaseColor = "#fff";
+  const iconHoverColor = "#D87D4A";
+
+  useEffect(() => {
+    { console.log("© NikoKutateladze 2026") }
+  }, [])
 
   return (
     <>
-
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/headphones' element={<HeadphonesPage />} />
-          <Route path='/speakers' element={<SpeakersPage />} />
-          <Route path='/earphones' element={<EarphonesPage />} />
-          <Route path='/:id/:id' element={<ProductPage setCartState={setCart} cartState={cart}/>} />
-        </Routes>
-        <div className="body2">
-          <div className="container-blog">
-            <div className="text-wrapper">
-              <div className="txt-container">
-                <HeaderM />
-                <h1 className='wrapper-header'>
-                  BRINGING YOU THE <span className='orange'>BEST</span> AUDIO GEAR
-                </h1>
-                <ParagraphS
-                  classContent={"dark-gray"}
-                  content={"Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment."}
-                />
-              </div>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/headphones' element={<HeadphonesPage />} />
+        <Route path='/speakers' element={<SpeakersPage />} />
+        <Route path='/earphones' element={<EarphonesPage />} />
+        <Route path='/:id/:id' element={<ProductPage setCartState={setCart} cartState={cart} />} />
+      </Routes>
+      <div className="body2">
+        <div className="container-blog">
+          <div className="text-wrapper">
+            <div className="txt-container">
+              <HeaderM />
+              <h1 className='wrapper-header'>
+                BRINGING YOU THE <span className='orange'>BEST</span> AUDIO GEAR
+              </h1>
+              <ParagraphS
+                classContent={"dark-gray"}
+                content={"Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment."}
+              />
             </div>
-            <div className="blog-img"></div>
+          </div>
+          <div className="blog-img"></div>
+        </div>
+      </div>
+
+
+      <footer>
+        <div className="footer-navbar">
+          <div className="footer-section">
+            <FooterNav content={"HOME"} />
+            <FooterNav content={"HEADPHONES"} />
+            <FooterNav content={"SPEAKERS"} />
+            <FooterNav content={"EARPHONES"} />
           </div>
         </div>
 
-
-        <footer>
-          <div className="footer-navbar">
-            <div className="footer-section">
-              <FooterNav content={"HOME"} />
-              <FooterNav content={"HEADPHONES"} />
-              <FooterNav content={"SPEAKERS"} />
-              <FooterNav content={"EARPHONES"} />
-            </div>
+        <div className="footer-container">
+          <div className="left-footer">
+            <p className='footer-txt'>
+              Audiophile is an all in one stop to fulfill your audio needs.
+            </p>
+            <p className='footer-copyright'>
+              Copyright 2021. All Rights Reserved
+            </p>
           </div>
 
-          <div className="footer-container">
-            <div className="left-footer">
-              <p className='footer-txt'>
-                Audiophile is an all in one stop to fulfill your audio needs.
-              </p>
-              <p className='footer-copyright'>
-                Copyright 2021. All Rights Reserved
-              </p>
-            </div>
+          <div className="right-footer">
+            <div className="icons">
+              <svg
+                onMouseEnter={() => setIcon1Hover(true)}
+                onMouseLeave={() => setIcon1Hover(false)}
+              >
+                <path fill={icon1Hover ? iconHoverColor : iconBaseColor} />
+              </svg>
 
-            <div className="right-footer">
-              <div className="icons">
-                <svg
-                  onMouseEnter={() => setIcon1Hover(true)}
-                  onMouseLeave={() => setIcon1Hover(false)}
-                >
-                  <path fill={icon1Hover ? iconHoverColor : iconBaseColor} />
-                </svg>
+              <svg
+                onMouseEnter={() => setIcon2Hover(true)}
+                onMouseLeave={() => setIcon2Hover(false)}
+              >
+                <path fill={icon2Hover ? iconHoverColor : iconBaseColor} />
+              </svg>
 
-                <svg
-                  onMouseEnter={() => setIcon2Hover(true)}
-                  onMouseLeave={() => setIcon2Hover(false)}
-                >
-                  <path fill={icon2Hover ? iconHoverColor : iconBaseColor} />
-                </svg>
-
-                <svg
-                  onMouseEnter={() => setIcon3Hover(true)}
-                  onMouseLeave={() => setIcon3Hover(false)}
-                >
-                  <path fill={icon3Hover ? iconHoverColor : iconBaseColor} />
-                </svg>
-              </div>
+              <svg
+                onMouseEnter={() => setIcon3Hover(true)}
+                onMouseLeave={() => setIcon3Hover(false)}
+              >
+                <path fill={icon3Hover ? iconHoverColor : iconBaseColor} />
+              </svg>
             </div>
           </div>
-        </footer>
+        </div>
+      </footer>
     </>
   )
 }

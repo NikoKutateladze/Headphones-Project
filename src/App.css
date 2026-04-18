@@ -38,6 +38,7 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  position: relative;
 }
 
 .inner-header {
@@ -91,6 +92,11 @@ body {
   top: 0;
   left: 50%; */
 
+}
+
+.background-cover {
+  z-index: 100;
+  
 }
 
 .nav-title {
@@ -898,6 +904,10 @@ footer {
   font-size: clamp(15px, 2.2vw, 19px);
   font-weight: 700;
   letter-spacing: 1.29px;
+}
+
+.cart-icon {
+  cursor: pointer;
 }
 
 .responsiveS {

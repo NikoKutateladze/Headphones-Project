@@ -19,7 +19,7 @@ export default function ProductPage({ cartState, setCartState }) {
                             return (
                                 <>
                                     <div className="product-view">
-                                        <ViewCard title={p.title} description={p.description} img={p.img} key={p.id} productId={p.id} cartState={cartState} setCartState={setCartState} />
+                                        <ViewCard title={p.title} description={p.description} img={p.img} key={p.id} productId={p.id} price={p.price} cartState={cartState} setCartState={setCartState} />
                                     </div>
 
                                 </>

@@ -52,7 +52,7 @@ export default function ViewCard({ title, description, img, productId, price, ca
                 <div className="headphone-text">
                     <HeaderL content={title} />
                     <ParagraphS content={description} classContent={"dark-gray responsiveS"} />
-                    <p className="price__product">$ 899</p>
+                    <p className="price__product">$ {price}</p>
                     <div className="product-interaction">
                         <Counter countVal={count} functionUp={handleUpFunction} functionDown={handleDownFunction} />
                         <div className="button" onClick={() => {
