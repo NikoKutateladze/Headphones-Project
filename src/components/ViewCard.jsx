@@ -4,6 +4,7 @@ import ParagraphS from "./ParagraphS"
 import HeaderL from "./HeaderL"
 import { useNavigate } from "react-router-dom"
 import { products } from "/src/App.jsx"
+import NavBar from "./NavBar";
 
 export const cartProducts = [
 
@@ -33,14 +34,10 @@ export default function ViewCard({ title, description, img, productId, price, ca
 
     }
 
-    useEffect(() => {
-        console.log("Cart Updated")
-    }, [cartState])
-
     const pid = Number(productId)
     return (
         <>
-
+            
             <div className="view-wrapper">
                 <div className="img-c">
                     <p className="go-back" onClick={() => navigate(-1)}>Go Back</p>

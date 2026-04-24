@@ -9,6 +9,7 @@ import HeaderL from "./HeaderL"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import ProductPage from "./Product"
 import { products } from "/src/App.jsx"
+import NavBar from "./NavBar"
 
 export default function HeadphonesPage() {
 

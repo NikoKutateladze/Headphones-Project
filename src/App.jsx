@@ -13,24 +13,36 @@ import EarphonesPage from './components/EarphonesPage'
 import HeaderM from './components/HeaderL'
 import ParagraphS from './components/ParagraphS'
 import ProductPage from './components/Product'
+import Layout from './components/Layout'
 
 export const products = [
-  { title: "XX99 Mark II Headphones", description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.", version: 'right', category: "headphones", img: "/src/Pro6.png", quantity: 0, price: 2999, id: 1 },
-  { title: "XX99 Mark I Headphones", description: "As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.", category: "headphones", img: "/src/Pro7.png", quantity: 0, price: 2199, id: 2 },
-  { title: "XX59 Headphones", description: "Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.", category: "headphones", price: 899, img: "/src/Pro8.png", version: 'right', quantity: 0, id: 3 },
-  { title: "ZX9 SPEAKER", description: "Upgrade your sound system with the all new ZX9 active speaker. It’s a bookshelf speaker system that offers truly wireless connectivity -- creating new possibilities for more pleasing and practical audio setups.", category: "speakers", img: "/src/ProS2.png", version: 'right', quantity: 0, price: 1199, id: 4 },
-  { title: "ZX7 SPEAKER", description: "Stream high quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.", img: "/src/Pro9.png", version: 'left', category: "speakers", quantity: 0, price: 999, id: 5 },
-  { title: "YX1 WIRELESS EARPHONES", description: "Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.", img: "/src/ProS3.png", version: 'right', category: "earphones", quantity: 0, price: 599, id: 6 },
+  { model: "XX99 MK II", title: "XX99 Mark II Headphones", description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.", version: 'right', category: "headphones", img: "/src/Pro6.png", quantity: 0, price: 2999, id: 1 },
+  { model: "XX99 MK I", title: "XX99 Mark I Headphones", description: "As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.", category: "headphones", img: "/src/Pro7.png", quantity: 0, price: 2199, id: 2 },
+  { model: "XX59", title: "XX59 Headphones", description: "Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.", category: "headphones", price: 899, img: "/src/Pro8.png", version: 'right', quantity: 0, id: 3 },
+  { model: "ZX9", title: "ZX9 SPEAKER", description: "Upgrade your sound system with the all new ZX9 active speaker. It’s a bookshelf speaker system that offers truly wireless connectivity -- creating new possibilities for more pleasing and practical audio setups.", category: "speakers", img: "/src/ProS2.png", version: 'right', quantity: 0, price: 1199, id: 4 },
+  { model: "ZX7", title: "ZX7 SPEAKER", description: "Stream high quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.", img: "/src/Pro9.png", version: 'left', category: "speakers", quantity: 0, price: 999, id: 5 },
+  { model: "YX1", title: "YX1 WIRELESS EARPHONES", description: "Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.", img: "/src/ProS3.png", version: 'right', category: "earphones", quantity: 0, price: 599, id: 6 },
 ]
 
 
 
 function App() {
 
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart")
+    return saved ? JSON.parse(saved) : []
+  });
 
-  const [cart, setCart] = useState([{ id: 0, title: "sample", description: "sample", img: "sample", quantity: 0 }]);
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart])
+
+  function removeFunction () {
+    setCart([]);
+  }
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -47,14 +59,26 @@ function App() {
     { console.log("© NikoKutateladze 2026") }
   }, [])
 
+  useEffect(() => {
+
+    console.log(cart)
+  }, [cart])
+
   return (
     <>
-      <Routes>
+    <Routes>
+      <Route element={
+        <Layout cart={cart} setToggle={setToggle} toggle={toggle} removeFunction={removeFunction}/>
+      }>
         <Route path='/' element={<HomePage />} />
         <Route path='/headphones' element={<HeadphonesPage />} />
         <Route path='/speakers' element={<SpeakersPage />} />
         <Route path='/earphones' element={<EarphonesPage />} />
         <Route path='/:id/:id' element={<ProductPage setCartState={setCart} cartState={cart} />} />
+      </Route>
+      
+
+        
       </Routes>
       <div className="body2">
         <div className="container-blog">

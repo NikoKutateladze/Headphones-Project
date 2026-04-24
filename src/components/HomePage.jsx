@@ -4,8 +4,11 @@ import CardsWrapper from "./CardsWrapper";
 import HomeHeader from "./HeaderContent";
 
 import { useState } from "react";
+import NavBar from "./NavBar";
 
 export default function HomePage() {
+
+    const [ toggle, setToggle ] = useState(false);
 
     const [hover, setHover] = useState(false);
 
@@ -32,6 +35,7 @@ export default function HomePage() {
     return (
         <>
             <div className="header">
+                
                 <div className="inner-header">
 
                     <div className="container">
