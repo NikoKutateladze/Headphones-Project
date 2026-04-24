@@ -40,8 +40,25 @@ function App() {
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
 
-  function removeFunction () {
+  function removeFunction() {
     setCart([]);
+  }
+
+  function updateQuantity(id, type) {
+    setCart(prev =>
+      prev.map(i => {
+        if (i.id !== id) return i
+        const newQuantity =
+          type === "inc"
+            ? i.quantity + 1
+            : i.quantity - 1
+        return {
+          ...i,
+          quantity: newQuantity
+        }
+        
+      }).filter(p => p.quantity > 0)
+    )
   }
 
   useEffect(() => {
@@ -66,19 +83,19 @@ function App() {
 
   return (
     <>
-    <Routes>
-      <Route element={
-        <Layout cart={cart} setToggle={setToggle} toggle={toggle} removeFunction={removeFunction}/>
-      }>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/headphones' element={<HeadphonesPage />} />
-        <Route path='/speakers' element={<SpeakersPage />} />
-        <Route path='/earphones' element={<EarphonesPage />} />
-        <Route path='/:id/:id' element={<ProductPage setCartState={setCart} cartState={cart} />} />
-      </Route>
-      
+      <Routes>
+        <Route element={
+          <Layout cart={cart} setToggle={setToggle} toggle={toggle} removeFunction={removeFunction} updateQuantity={updateQuantity} />
+        }>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/headphones' element={<HeadphonesPage />} />
+          <Route path='/speakers' element={<SpeakersPage />} />
+          <Route path='/earphones' element={<EarphonesPage />} />
+          <Route path='/:id/:id' element={<ProductPage setCartState={setCart} cartState={cart} />} />
+        </Route>
 
-        
+
+
       </Routes>
       <div className="body2">
         <div className="container-blog">

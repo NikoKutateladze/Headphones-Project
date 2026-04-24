@@ -2,13 +2,20 @@ import HeaderM from "./HeaderM";
 import HeaderNav from "./HeaderNav"
 import { useState } from "react";
 import ParagraphS from "./ParagraphS";
+import CartCounter from "./CartCounter";
+import { Link } from "react-router-dom";
 
-export default function NavBar({ cart, toggle, setToggle, removeFunction }) {
-
-    const [pCount, setPCount] = useState(0);
+export default function NavBar({ cart, toggle, setToggle, removeFunction, updateQuantity }) {
 
     const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
+    function decreaseQuantity() {
+        
+    }
+
+    function increaseQuantity() {
+
+    }
     return (
         <>
 
@@ -39,11 +46,7 @@ export default function NavBar({ cart, toggle, setToggle, removeFunction }) {
                                                         <p className="product-p psize-s bold">$ {p.price}</p>
                                                     </div>
 
-                                                    <div className="product-count">
-                                                        <div className="product-plus"></div>
-                                                        <div className="product-q">{ }</div>
-                                                        <div className="product-minus"></div>
-                                                    </div>
+                                                    <CartCounter countVal={p.quantity} functionUp={() => updateQuantity(p.id, "inc")} functionDown={() =>updateQuantity(p.id, "dec")} />
                                                 </div>
                                             )
                                         })}
@@ -54,9 +57,7 @@ export default function NavBar({ cart, toggle, setToggle, removeFunction }) {
                                 <ParagraphS classContent={"gray-price bold tt-total"} content={"TOTAL"} />
                                 <div className="price bold">${totalPrice}</div>
                             </div>
-                            <div className="button__checkout">
-                                CHECKOUT
-                            </div>
+                            <Link to={'/checkout'} className="button__checkout">CHECKOUT</Link>
                         </div>
                     </>
 

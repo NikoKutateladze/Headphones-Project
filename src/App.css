@@ -1047,6 +1047,7 @@ footer {
 .product-box {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .box-img {
@@ -1064,6 +1065,28 @@ footer {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.cart__counter {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: clamp(18px, 20vw, 36px);
+  aspect-ratio: 2.5 / 1;
+  background-color: var(--palette-2);
+}
+
+.cart__arrow {
+  color: #b5b5b5;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  cursor: pointer;
+  transition: .25s;
 }
 
 .psize-s {
